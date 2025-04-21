@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demostración del Box Model</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .controls label {
+      display: flex;
+      flex-direction: column;
+    }
+    .box-container {
+      display: flex;
+      justify-content: center;
+    }
+    .box {
+      background-color: #cce5ff;
+      border: 5px solid #007bff;
+      padding: 20px;
+      margin: 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 0;
+      box-sizing: content-box;
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+  <h1>Demostración del Modelo de Caja (Box Model)</h1>
+
+  <div class="controls">
+    <label>Width (ancho): <input type="range" id="width" min="50" max="400" value="200"></label>
+    <label>Height (alto): <input type="range" id="height" min="50" max="400" value="200"></label>
+    <label>Padding: <input type="range" id="padding" min="0" max="100" value="20"></label>
+    <label>Margin: <input type="range" id="margin" min="0" max="100" value="20"></label>
+    <label>Border Width: <input type="range" id="border" min="0" max="20" value="5"></label>
+    <label>Border Radius: <input type="range" id="radius" min="0" max="100" value="0"></label>
+    <label>Box Sizing:
+      <select id="boxSizing">
+        <option value="content-box">content-box</option>
+        <option value="border-box">border-box</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="box-container">
+    <div class="box" id="box">Texto de ejemplo</div>
+  </div>
+
+  <script>
+    const box = document.getElementById("box");
+    const controls = ["width", "height", "padding", "margin", "border", "radius", "boxSizing"];
+
+    controls.forEach(control => {
+      document.getElementById(control).addEventListener("input", () => {
+        box.style.width = document.getElementById("width").value + "px";
+        box.style.height = document.getElementById("height").value + "px";
+        box.style.padding = document.getElementById("padding").value + "px";
+        box.style.margin = document.getElementById("margin").value + "px";
+        box.style.borderWidth = document.getElementById("border").value + "px";
+        box.style.borderRadius = document.getElementById("radius").value + "px";
+        box.style.boxSizing = document.getElementById("boxSizing").value;
+      });
+    });
+  </script>
+</body>
+</html>
